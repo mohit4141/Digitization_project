@@ -15,6 +15,17 @@ var programming_languages = [
 	"ruby"
 ]
 
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myObj = JSON.parse(this.responseText);
+    document.getElementById("demo").innerHTML = myObj.name;
+    var programming_languages = myObj.name;
+  }
+};
+xmlhttp.open("GET", "./data.txt", true);
+xmlhttp.send();
+
 let answer = '';
 let maxWrong = 6;
 let mistakes = 0;
@@ -58,9 +69,22 @@ function handleGuess(chosenLetter) {
 
     modal.style.display = "block";
     span.onclick = function() {
-  modal.style.display = "none";
-}
-window.onclick = function(event) {
+    modal.style.display = "none";
+      }
+    var vid = document.getElementById("myVideo");
+    
+    vid.autoplay = true;
+    vid.load();
+    if (mistakes==1){
+      document.getElementById('imgrt').src = "./images/cont1.jpg";  
+    vid.src = ""}
+    if (mistakes==2){
+      document.getElementById('imgrt').src = "./images/cont2.jpg";  
+      vid.src = ""}
+    if (mistakes==3){
+      vid.src = "./videos/chitra.mp4";  
+      document.getElementById('imgrt').src = ""}
+window.onclick = function(event) {//to close modal by clicking anywhere outside it
   if (event.target == modal) {
     modal.style.display = "none";
   }
